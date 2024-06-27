@@ -3,13 +3,13 @@ import TodoItem from "./item/TodoItem";
 
 const data = [
   {
-    id: 1,
-    title: "Finish th eas",
+    _id: 1,
+    title: "Make a website",
     isCompleted: false,
   },
   {
-    id: 2,
-    title: "Finish th easwdwwwwwvv",
+    _id: 2,
+    title: "Drink coffee",
     isCompleted: false,
   },
 ];
@@ -18,25 +18,18 @@ export default function Home() {
   const [todos, setTodos] = useState(data);
   function changeTodo(id) {
     const copy = [...todos];
-    const current = copy.find((t) => t.id === id);
+    const current = copy.find((t) => t._id === id);
     current.isCompleted = !current.isCompleted;
     setTodos(copy);
   }
-  function removeTodo(id) {
-    let newTodos = [...todos];
-    setTodos(
-      newTodos.filter((t) => {
-        return t.id !== id;
-      })
-    );
-  }
+  const removeTodo = (id) => setTodos([...todos].filter((t) => t._id !== id));
 
   return (
     <div className=" text-white w-4/5 mx-auto">
       <h1 className="text-2xl font-bold text-center mb-10">Todo app</h1>
       {todos.map((todo) => (
         <TodoItem
-          key={todo.id}
+          key={todo._id}
           todo={todo}
           changeTodo={changeTodo}
           removeTodo={removeTodo}
