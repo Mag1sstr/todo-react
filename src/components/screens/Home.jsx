@@ -6,11 +6,13 @@ const data = [
     _id: 1,
     title: "Make a website",
     isCompleted: false,
+    click: false,
   },
   {
     _id: 2,
     title: "Drink coffee",
     isCompleted: false,
+    click: false,
   },
 ];
 
@@ -24,9 +26,10 @@ export default function Home() {
     setTodos(copy);
   }
   const removeTodo = (id) => setTodos([...todos].filter((t) => t._id !== id));
+  console.log(todos);
 
   return (
-    <div className=" text-white w-4/5 mx-auto">
+    <div className=" text-white  w-4/5 mx-auto">
       <h1 className="text-2xl font-bold text-center mb-10">Todo app</h1>
       <input
         style={{ color: "white" }}
@@ -36,9 +39,10 @@ export default function Home() {
           if (e.key == "Enter") {
             let newData = [...todos];
             let newObj = {
-              _id: new Date(),
+              _id: Math.random(),
               title: inputValue,
               isCompleted: false,
+              click: false,
             };
             newData.unshift(newObj);
             setTodos(newData);
@@ -49,10 +53,15 @@ export default function Home() {
         type="text"
         placeholder="Введите название задачи"
       />
-      {todos.map((todo) => (
+      {todos.map((todo, index) => (
         <TodoItem
           key={todo._id}
           todo={todo}
+          click={todo.click}
+          todos={todos}
+          setTodos={setTodos}
+          index={index}
+          title={todo.title}
           changeTodo={changeTodo}
           removeTodo={removeTodo}
         />
