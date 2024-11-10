@@ -3,6 +3,7 @@ import Check from "./Check";
 import { FaTrash } from "react-icons/fa";
 import { TiTickOutline } from "react-icons/ti";
 import { MdEdit } from "react-icons/md";
+import { FaStar } from "react-icons/fa";
 
 export default function TodoItem({
   todo,
@@ -61,6 +62,15 @@ export default function TodoItem({
         </button>
       )}
       <div className="flex items-center gap-4">
+        <div className="group flex items-center">
+          <p className="fastar__text w-0 whitespace-nowrap  overflow-x-hidden transition-all  group-hover:w-[140px]">
+            Add to favorites?
+          </p>
+          <FaStar size={20} className="text-yellow-400 cursor-pointer " />
+        </div>
+
+        <div className="w-[1px] h-6 bg-white"></div>
+
         <MdEdit
           size={20}
           className="text-blue-500 cursor-pointer"
@@ -74,7 +84,7 @@ export default function TodoItem({
         <FaTrash
           onClick={() => removeTodo(todo._id)}
           size={20}
-          className="text-gray-500 hover:text-red-500"
+          className="text-gray-500 hover:text-red-500 cursor-pointer"
         />
       </div>
     </div>
